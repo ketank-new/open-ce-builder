@@ -52,7 +52,3 @@ RUN export PATH="${PATH}" && \
     mkdir -p ${TARGET_DIR}
 
 COPY --chown=${OPENCE_USER}:${OPENCE_GROUP} ${LOCAL_CONDA_CHANNEL} ${TARGET_DIR}
-
-RUN if [ -n "$CONDA_ENV_FILE" ]; then $CONDA_HOME/bin/conda env create -f ${TARGET_DIR}/${CONDA_ENV_FILE}; fi && \
-    rm -rf ${TARGET_DIR} && \
-    conda clean -y --all

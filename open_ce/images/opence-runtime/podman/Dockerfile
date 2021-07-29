@@ -52,3 +52,5 @@ RUN export PATH="${PATH}" && \
     mkdir -p ${TARGET_DIR}
 
 COPY --chown=${OPENCE_USER}:${OPENCE_GROUP} ${LOCAL_CONDA_CHANNEL} ${TARGET_DIR}
+# Install all existing envs in TARGET_DIR
+RUN for envfile in ${TARGET_DIR}/output/*.yaml; do conda env create -f $envfile; done

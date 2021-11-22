@@ -74,7 +74,7 @@ def _main(arg_strings=None): # pylint: disable=too-many-locals, too-many-stateme
 
     primary_repo_path = "./"
 
-    open_ce_env_file = os.path.abspath(os.path.join(primary_repo_path, "envs", "opence-env.yaml"))
+    open_ce_env_file = os.path.abspath(os.path.join(primary_repo_path, "envs", "pytorch-env.yaml"))
     if not _has_git_tag_changed(primary_repo_path, args.branch, open_ce_env_file):
         print("--->The opence-env git_tag has not changed.")
         print("--->No release is needed.")

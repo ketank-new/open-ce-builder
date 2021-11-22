@@ -88,6 +88,7 @@ def _main(arg_strings=None): # pylint: disable=too-many-locals, too-many-stateme
     branch_name = "open-ce-r{}".format(release_number)
     version_msg = "Open-CE Version {}".format(version)
     release_name = "v{}".format(version)
+    print("Ketan:cuurent-tag:previous_tag:version:release_number:branch_name", current_tag, previous_tag, version, release_number ,branch_name)
 
     env_file_contents = env_config.load_env_config_files([open_ce_env_file], utils.ALL_VARIANTS(), ignore_urls=True)
     for env_file_content in env_file_contents:
@@ -105,6 +106,7 @@ def _main(arg_strings=None): # pylint: disable=too-many-locals, too-many-stateme
         print("--->Branch {} already exists in {}. Not creating it.".format(current_tag, args.primary_repo))
 
     print("--->Tag Primary Branch")
+    print("Ketan just before tagging tag is", current_tag)
     git_utils.create_tag(primary_repo_path, current_tag, version_msg)
 
     if args.not_dry_run:
@@ -119,6 +121,7 @@ def _main(arg_strings=None): # pylint: disable=too-many-locals, too-many-stateme
                                 github_org=args.github_org,
                                 pat=args.pat,
                                 skipped_repos=[args.primary_repo, ".github"] + inputs.parse_arg_list(args.skipped_repos))
+    print("Ketan : List of repos" , repos)
 
     repos.sort(key=lambda repo: repo["name"])
 
@@ -126,6 +129,7 @@ def _main(arg_strings=None): # pylint: disable=too-many-locals, too-many-stateme
                               branch=None,
                               repo_dir=args.repo_dir,
                               prev_tag=previous_tag)
+    print("Ketan: Tagging repos with ", current_tag)
     tag_all_repos.tag_repos(repos=repos,
                             tag=current_tag,
                             tag_msg=version_msg,
